@@ -48,6 +48,20 @@ public class MediaType extends MimeType implements Serializable {
     public static final String ALL_VALUE = "*/*";
 
     /**
+     * Public constant media type for {@code application/javascript}.
+     *
+     * @see #APPLICATION_JS
+     */
+    public final static MediaType APPLICATION_JS;
+
+    /**
+     * A String equivalent of {@code MediaType#APPLICATION_JS}.
+     *
+     * @see #APPLICATION_JS_VALUE
+     */
+    public final static String APPLICATION_JS_VALUE = "application/javascript";
+
+    /**
      * Public constant media type for {@code application/json}.
      *
      * @see #APPLICATION_JSON_UTF8
@@ -70,6 +84,7 @@ public class MediaType extends MimeType implements Serializable {
      * A String equivalent of {@link MediaType#APPLICATION_JSON_UTF8}.
      */
     public final static String APPLICATION_JSON_UTF8_VALUE = APPLICATION_JSON_VALUE + ";charset=UTF-8";
+
     /**
      * Public constant media type for {@code application/xml}.
      */
@@ -246,6 +261,7 @@ public class MediaType extends MimeType implements Serializable {
 
     static {
         ALL = valueOf(ALL_VALUE);
+        APPLICATION_JS = valueOf(APPLICATION_JS_VALUE);
         APPLICATION_JSON = valueOf(APPLICATION_JSON_VALUE);
         APPLICATION_JSON_UTF8 = valueOf(APPLICATION_JSON_UTF8_VALUE);
         APPLICATION_XML = valueOf(APPLICATION_XML_VALUE);
