@@ -196,6 +196,16 @@ public class MediaType extends MimeType implements Serializable {
     public final static String IMAGE_PNG_VALUE = "image/png";
 
     /**
+     * Public constant media type for {@code image/x-icon}.
+     */
+    public final static MediaType IMAGE_ICON;
+
+    /**
+     * A String equivalent of {@link MediaType#IMAGE_ICON}.
+     */
+    public final static String IMAGE_ICON_VALUE = "image/x-icon";
+
+    /**
      * Public constant media type for {@code multipart/form-data}.
      */
     public final static MediaType MULTIPART_FORM_DATA;
@@ -226,6 +236,26 @@ public class MediaType extends MimeType implements Serializable {
      * A String equivalent of {@link MediaType#TEXT_HTML}.
      */
     public final static String TEXT_HTML_VALUE = "text/html";
+
+    /**
+     * Public constant media type for {@code text/css}.
+     */
+    public final static MediaType TEXT_CSS;
+
+    /**
+     * A String equivalent of {@link MediaType#TEXT_CSS}.
+     */
+    public final static String TEXT_CSS_VALUE = "text/css";
+
+    /**
+     * Public constant media type for {@code text/javascript}.
+     */
+    public final static MediaType TEXT_JAVASCRIPT;
+
+    /**
+     * A String equivalent of {@link MediaType#TEXT_JAVASCRIPT}.
+     */
+    public final static String TEXT_JAVASCRIPT_VALUE = "text/javascript";
 
     /**
      * Public constant media type for {@code text/markdown}.
@@ -275,9 +305,12 @@ public class MediaType extends MimeType implements Serializable {
         IMAGE_GIF = valueOf(IMAGE_GIF_VALUE);
         IMAGE_JPEG = valueOf(IMAGE_JPEG_VALUE);
         IMAGE_PNG = valueOf(IMAGE_PNG_VALUE);
+        IMAGE_ICON = valueOf(IMAGE_ICON_VALUE);
         MULTIPART_FORM_DATA = valueOf(MULTIPART_FORM_DATA_VALUE);
         TEXT_EVENT_STREAM = valueOf(TEXT_EVENT_STREAM_VALUE);
         TEXT_HTML = valueOf(TEXT_HTML_VALUE);
+        TEXT_CSS = valueOf(TEXT_CSS_VALUE);
+        TEXT_JAVASCRIPT = valueOf(TEXT_JAVASCRIPT_VALUE);
         TEXT_MARKDOWN = valueOf(TEXT_MARKDOWN_VALUE);
         TEXT_PLAIN = valueOf(TEXT_PLAIN_VALUE);
         TEXT_XML = valueOf(TEXT_XML_VALUE);
