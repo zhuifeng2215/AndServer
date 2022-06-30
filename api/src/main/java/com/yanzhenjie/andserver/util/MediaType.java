@@ -321,7 +321,6 @@ public class MediaType extends MimeType implements Serializable {
      * "&#42;", parameters empty.
      *
      * @param type the primary type.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(String type) {
@@ -333,9 +332,8 @@ public class MediaType extends MimeType implements Serializable {
      *
      * <p>The parameters are empty.
      *
-     * @param type the primary type.
+     * @param type    the primary type.
      * @param subtype the subtype.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(String type, String subtype) {
@@ -345,10 +343,9 @@ public class MediaType extends MimeType implements Serializable {
     /**
      * Create a new {@code MediaType} for the given type, subtype, and character set.
      *
-     * @param type the primary type.
+     * @param type    the primary type.
      * @param subtype the subtype.
      * @param charset the character set.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(String type, String subtype, Charset charset) {
@@ -358,10 +355,9 @@ public class MediaType extends MimeType implements Serializable {
     /**
      * Create a new {@code MediaType} for the given type, subtype, and quality value.
      *
-     * @param type the primary type.
-     * @param subtype the subtype.
+     * @param type         the primary type.
+     * @param subtype      the subtype.
      * @param qualityValue the quality value.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(String type, String subtype, double qualityValue) {
@@ -372,9 +368,8 @@ public class MediaType extends MimeType implements Serializable {
      * Copy-constructor that copies the type, subtype and parameters of the given {@code MediaType}, and allows to set
      * the specified character set.
      *
-     * @param other the other media type.
+     * @param other   the other media type.
      * @param charset the character set.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(MediaType other, Charset charset) {
@@ -385,9 +380,8 @@ public class MediaType extends MimeType implements Serializable {
      * Copy-constructor that copies the type and subtype of the given {@code MediaType}, and allows for different
      * parameter.
      *
-     * @param other the other media type.
+     * @param other      the other media type.
      * @param parameters the parameters, may be null.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(MediaType other, Map<String, String> parameters) {
@@ -397,10 +391,9 @@ public class MediaType extends MimeType implements Serializable {
     /**
      * Create a new {@code MediaType} for the given type, subtype, and parameters.
      *
-     * @param type the primary type.
-     * @param subtype the subtype.
+     * @param type       the primary type.
+     * @param subtype    the subtype.
      * @param parameters the parameters, may be null.
-     *
      * @throws IllegalArgumentException if any of the parameters contain illegal characters.
      */
     public MediaType(String type, String subtype, Map<String, String> parameters) {
@@ -435,7 +428,6 @@ public class MediaType extends MimeType implements Serializable {
      * includes {@code application/soap+xml}, etc. This method is <b>not</b> symmetric.
      *
      * @param other the reference media type with which to compare.
-     *
      * @return {@code true} if this media type includes the given media type; {@code false} otherwise.
      */
     public boolean includes(MediaType other) {
@@ -449,7 +441,6 @@ public class MediaType extends MimeType implements Serializable {
      * effect, this method is similar to {@link #includes(MediaType)}, except that it <b>is</b> symmetric.
      *
      * @param other the reference media type with which to compare.
-     *
      * @return {@code true} if this media type is compatible with the given media type; {@code false} otherwise.
      */
     public boolean isCompatibleWith(MediaType other) {
@@ -490,7 +481,6 @@ public class MediaType extends MimeType implements Serializable {
      * naming convention.
      *
      * @param value the string to parse.
-     *
      * @throws InvalidMediaTypeException if the media type value cannot be parsed.
      * @see #parseMediaType(String)
      */
@@ -502,9 +492,7 @@ public class MediaType extends MimeType implements Serializable {
      * Parse the given String into a single {@code MediaType}.
      *
      * @param mediaType the string to parse.
-     *
      * @return the media type.
-     *
      * @throws InvalidMediaTypeException if the media type value cannot be parsed.
      */
     public static MediaType parseMediaType(String mediaType) {
@@ -527,9 +515,7 @@ public class MediaType extends MimeType implements Serializable {
      * <p>This method can be used to parse an Accept or Content-Type header.
      *
      * @param mediaTypes the string to parse.
-     *
      * @return the list of media types.
-     *
      * @throws InvalidMediaTypeException if the media type value cannot be parsed.
      */
     public static List<MediaType> parseMediaTypes(String mediaTypes) {
@@ -548,7 +534,7 @@ public class MediaType extends MimeType implements Serializable {
         }
 
         List<MediaType> result = new ArrayList<>(tokens.size());
-        for (String token: tokens) {
+        for (String token : tokens) {
             result.add(parseMediaType(token));
         }
         return result;
@@ -560,9 +546,7 @@ public class MediaType extends MimeType implements Serializable {
      * <p>This method can be used to parse an Accept or Content-Type header.
      *
      * @param mediaTypes the string to parse.
-     *
      * @return the list of media types.
-     *
      * @throws InvalidMediaTypeException if the media type value cannot be parsed.
      */
     public static List<MediaType> parseMediaTypes(List<String> mediaTypes) {
@@ -572,7 +556,7 @@ public class MediaType extends MimeType implements Serializable {
             return parseMediaTypes(mediaTypes.get(0));
         } else {
             List<MediaType> result = new ArrayList<>(8);
-            for (String mediaType: mediaTypes) {
+            for (String mediaType : mediaTypes) {
                 result.addAll(parseMediaTypes(mediaType));
             }
             return result;
@@ -599,9 +583,8 @@ public class MediaType extends MimeType implements Serializable {
      * == text/html</blockquote> <blockquote>audio/basic == audio/wave</blockquote>
      *
      * @param mediaTypes the list of media types to be sorted.
-     *
      * @see <a href="http://tools.ietf.org/html/rfc7231#section-5.3.2">HTTP 1.1: Semantics and Content, section
-     *     5.3.2</a>
+     * 5.3.2</a>
      */
     public static void sortBySpecificity(List<MediaType> mediaTypes) {
         Assert.notNull(mediaTypes, "'mediaTypes' must not be null");
@@ -642,8 +625,7 @@ public class MediaType extends MimeType implements Serializable {
     public static void sortBySpecificityAndQuality(List<MediaType> mediaTypes) {
         Assert.notNull(mediaTypes, "'mediaTypes' must not be null");
         if (mediaTypes.size() > 1) {
-            Collections.sort(mediaTypes, new CompoundComparator<MediaType>(MediaType.SPECIFICITY_COMPARATOR,
-                MediaType.QUALITY_VALUE_COMPARATOR));
+            Collections.sort(mediaTypes, new CompoundComparator<MediaType>(MediaType.SPECIFICITY_COMPARATOR, MediaType.QUALITY_VALUE_COMPARATOR));
         }
     }
 
@@ -651,10 +633,16 @@ public class MediaType extends MimeType implements Serializable {
      * Get the {@link MediaType} of the file.
      *
      * @param fileName file name.
-     *
      * @return {@link MediaType}, cannot be null.
      */
     public static MediaType getFileMediaType(String fileName) {
+        if (fileName.endsWith(".js")) {
+            return MediaType.APPLICATION_JS;
+        } else if (fileName.endsWith(".css")) {
+            return MediaType.TEXT_CSS;
+        } else if (fileName.endsWith(".ico")) {
+            return MediaType.IMAGE_ICON;
+        }
         String extension = getUrlExtension(fileName);
         if (!MimeTypeMap.getSingleton().hasExtension(extension)) {
             return MediaType.APPLICATION_OCTET_STREAM;
@@ -672,7 +660,6 @@ public class MediaType extends MimeType implements Serializable {
      * Get he extension by url.
      *
      * @param url url.
-     *
      * @return extension name.
      */
     public static String getUrlExtension(String url) {
