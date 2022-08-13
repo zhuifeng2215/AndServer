@@ -16,6 +16,7 @@
 package com.yanzhenjie.andserver.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.yanzhenjie.andserver.error.InvalidMediaTypeException;
@@ -635,15 +636,24 @@ public class MediaType extends MimeType implements Serializable {
      * @param fileName file name.
      * @return {@link MediaType}, cannot be null.
      */
+    @SuppressWarnings("AlibabaUndefineMagicConstant")
     public static MediaType getFileMediaType(String fileName) {
-        if (fileName.endsWith(".js")) {
+        /*if (fileName.endsWith(".js")) {
             return MediaType.APPLICATION_JS;
         } else if (fileName.endsWith(".css")) {
             return MediaType.TEXT_CSS;
         } else if (fileName.endsWith(".ico")) {
             return MediaType.IMAGE_ICON;
-        }
+        }*/
         String extension = getUrlExtension(fileName);
+        Log.e("getFileMediaType", "fileName=" + fileName + ", extension=" + extension);
+        if ("js".equals(extension)) {
+            return MediaType.APPLICATION_JS;
+        } else if ("css".equals(extension)) {
+            return MediaType.TEXT_CSS;
+        } else if ("ico".equals(extension)) {
+            return MediaType.IMAGE_ICON;
+        }
         if (!MimeTypeMap.getSingleton().hasExtension(extension)) {
             return MediaType.APPLICATION_OCTET_STREAM;
         }
@@ -664,6 +674,7 @@ public class MediaType extends MimeType implements Serializable {
      */
     public static String getUrlExtension(String url) {
         String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+        Log.e("getUrlExtension", "url=" + url + ", extension=" + extension);
         return TextUtils.isEmpty(extension) ? "" : extension;
     }
 
