@@ -78,4 +78,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         return true;
     }
+
+    @Override
+    public int order() {
+        return 0;
+    }
 }

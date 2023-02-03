@@ -56,6 +56,7 @@ import org.apache.httpcore.protocol.HttpRequestHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -99,6 +100,8 @@ public class DispatcherHandler implements HttpRequestHandler, Register {
 
         if (!mInterceptorList.contains(interceptor)) {
             mInterceptorList.add(interceptor);
+            //order越小拦截器越靠前,相同顺序会按名称进行排序
+            Collections.sort(mInterceptorList, (o1, o2) -> o1.order() - o2.order());
         }
     }
 
@@ -203,11 +206,10 @@ public class DispatcherHandler implements HttpRequestHandler, Register {
      * Return the {@link RequestHandler} for this request.
      *
      * @param request current HTTP request.
-     *
      * @return the {@link RequestHandler}, or {@code null} if no handler could be found.
      */
     private HandlerAdapter getHandlerAdapter(HttpRequest request) {
-        for (HandlerAdapter ha: mAdapterList) {
+        for (HandlerAdapter ha : mAdapterList) {
             if (ha.intercept(request)) {
                 return ha;
             }
@@ -218,14 +220,13 @@ public class DispatcherHandler implements HttpRequestHandler, Register {
     /**
      * Intercept the execution of a handler.
      *
-     * @param request current request.
+     * @param request  current request.
      * @param response current response.
-     * @param handler the corresponding handler of the current request.
-     *
+     * @param handler  the corresponding handler of the current request.
      * @return true if the interceptor has processed the request and responded.
      */
     private boolean preHandle(HttpRequest request, HttpResponse response, RequestHandler handler) throws Exception {
-        for (HandlerInterceptor interceptor: mInterceptorList) {
+        for (HandlerInterceptor interceptor : mInterceptorList) {
             if (interceptor.onIntercept(request, response, handler)) {
                 return true;
             }

@@ -33,7 +33,7 @@ public class ModifiedInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean onIntercept(@NonNull HttpRequest request, @NonNull HttpResponse response,
-        @NonNull RequestHandler handler) {
+                               @NonNull RequestHandler handler) {
         // Process cache header, if supported by the handler.
         HttpMethod method = request.getMethod();
         if (method == HttpMethod.GET || method == HttpMethod.HEAD) {
@@ -52,5 +52,10 @@ public class ModifiedInterceptor implements HandlerInterceptor {
             return new Modified(request, response).process(eTag, lastModified);
         }
         return false;
+    }
+
+    @Override
+    public int order() {
+        return 100;
     }
 }

@@ -29,12 +29,16 @@ public interface HandlerInterceptor {
     /**
      * Intercept the execution of a handler.
      *
-     * @param request current request.
+     * @param request  current request.
      * @param response current response.
-     * @param handler the corresponding handler of the current request.
-     *
+     * @param handler  the corresponding handler of the current request.
      * @return true if the interceptor has processed the request and responded.
      */
     boolean onIntercept(@NonNull HttpRequest request, @NonNull HttpResponse response, @NonNull RequestHandler handler)
-        throws Exception;
+            throws Exception;
+
+    /**
+     * Intercept order
+     */
+    int order();
 }

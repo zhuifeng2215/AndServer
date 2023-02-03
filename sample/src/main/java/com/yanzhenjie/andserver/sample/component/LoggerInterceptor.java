@@ -44,4 +44,9 @@ public class LoggerInterceptor implements HandlerInterceptor {
         Logger.i("Param: " + JsonUtils.toJsonString(valueMap));
         return false;
     }
+
+    @Override
+    public int order() {
+        return 0;
+    }
 }
