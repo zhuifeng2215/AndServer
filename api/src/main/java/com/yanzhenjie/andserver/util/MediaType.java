@@ -16,7 +16,6 @@
 package com.yanzhenjie.andserver.util;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.yanzhenjie.andserver.error.InvalidMediaTypeException;
@@ -626,7 +625,8 @@ public class MediaType extends MimeType implements Serializable {
     public static void sortBySpecificityAndQuality(List<MediaType> mediaTypes) {
         Assert.notNull(mediaTypes, "'mediaTypes' must not be null");
         if (mediaTypes.size() > 1) {
-            Collections.sort(mediaTypes, new CompoundComparator<MediaType>(MediaType.SPECIFICITY_COMPARATOR, MediaType.QUALITY_VALUE_COMPARATOR));
+            Collections.sort(mediaTypes, new CompoundComparator<MediaType>(MediaType.SPECIFICITY_COMPARATOR,
+                MediaType.QUALITY_VALUE_COMPARATOR));
         }
     }
 
@@ -646,7 +646,6 @@ public class MediaType extends MimeType implements Serializable {
             return MediaType.IMAGE_ICON;
         }*/
         String extension = getUrlExtension(fileName);
-        Log.e("getFileMediaType", "fileName=" + fileName + ", extension=" + extension);
         if ("js".equals(extension)) {
             return MediaType.APPLICATION_JS;
         } else if ("css".equals(extension)) {
@@ -674,7 +673,6 @@ public class MediaType extends MimeType implements Serializable {
      */
     public static String getUrlExtension(String url) {
         String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-        Log.e("getUrlExtension", "url=" + url + ", extension=" + extension);
         return TextUtils.isEmpty(extension) ? "" : extension;
     }
 

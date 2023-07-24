@@ -110,9 +110,23 @@ class TestController {
     }
 
     @PostMapping(path = "/upload", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    String upload(@RequestParam(name = "avatar") MultipartFile file) throws IOException {
-        File localFile = FileUtils.createRandomFile(file);
-        file.transferTo(localFile);
+    String upload(@RequestParam(name = "avatar") final MultipartFile file) {
+        final File localFile = FileUtils.createRandomFile(file);
+
+        // We use a sub-thread to process files so that the api '/upload' can respond faster
+        Executors.getInstance().submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    file.transferTo(localFile);
+
+                    // Do something ...
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         return localFile.getAbsolutePath();
     }
 

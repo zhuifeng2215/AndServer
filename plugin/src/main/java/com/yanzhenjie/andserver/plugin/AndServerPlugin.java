@@ -51,9 +51,6 @@ public class AndServerPlugin implements Plugin<Project> {
             } else if (it instanceof LibraryPlugin) {
                 LibraryExtension extension = project.getExtensions().getByType(LibraryExtension.class);
                 configGenerator(project, extension.getLibraryVariants());
-            } else if (it instanceof FeaturePlugin) {
-                FeatureExtension extension = project.getExtensions().getByType(FeatureExtension.class);
-                configGenerator(project, extension.getFeatureVariants());
             }
         });
     }
