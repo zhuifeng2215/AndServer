@@ -38,6 +38,7 @@ import com.yanzhenjie.andserver.sample.component.LoginInterceptor;
 import com.yanzhenjie.andserver.sample.model.UserInfo;
 import com.yanzhenjie.andserver.sample.util.FileUtils;
 import com.yanzhenjie.andserver.sample.util.Logger;
+import com.yanzhenjie.andserver.util.Executors;
 import com.yanzhenjie.andserver.util.MediaType;
 
 import java.io.File;
