@@ -3,6 +3,6 @@ jdk:
 
 before_install:
   - sdk update
-
+  
 install:
-  - ./gradlew clean -xtest -xlint assemble publishToMavenLocal
+  - ./gradlew clean -Pgroup=com.github.zhuifeng2215 -Pversion=2.1.12.g -xtest -xlint :annotation:assemble :api:assembleRelease :processor:assemble :plugin:assemble :annotation:publishToMavenLocal :api:publishToMavenLocal :processor:publishToMavenLocal :plugin:publishToMavenLocal
