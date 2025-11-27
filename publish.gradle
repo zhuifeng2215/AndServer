@@ -20,9 +20,13 @@ def getSonatypePassword() {
 def plugins = project.getPlugins()
 if (plugins.hasPlugin('com.android.library')) {
     task javadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.source
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        source = android.sourceSets.main.java.srcDirs
+        // 使用更兼容AGP 8.x的方式配置classpath
+        classpath += project.files(android.getBootClasspath().collect { it.toString() })
         failOnError false
+        options.encoding = 'UTF-8'
+        // 跳过空目录检查
+        options.addStringOption('Xdoclint:none', '-quiet')
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {
