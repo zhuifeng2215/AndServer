@@ -19,6 +19,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by Zhenjie Yan on 2018/6/9.
@@ -67,6 +68,7 @@ public class ServerManager extends BroadcastReceiver {
 
     private static void sendBroadcast(Context context, int cmd, String message) {
         Intent broadcast = new Intent(ACTION);
+        broadcast.setPackage(context.getPackageName());
         broadcast.putExtra(CMD_KEY, cmd);
         broadcast.putExtra(MESSAGE_KEY, message);
         context.sendBroadcast(broadcast);
@@ -85,7 +87,7 @@ public class ServerManager extends BroadcastReceiver {
      */
     public void register() {
         IntentFilter filter = new IntentFilter(ACTION);
-        mActivity.registerReceiver(this, filter);
+        ContextCompat.registerReceiver(mActivity, this, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     /**

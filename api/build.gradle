@@ -1,7 +1,12 @@
 apply plugin: plugin.androidLibrary
 
 android {
+    namespace 'com.yanzhenjie.andserver'
     compileSdkVersion androidBuild.compileSdkVersion
+
+    buildFeatures {
+        buildConfig true
+    }
 
     defaultConfig {
         minSdkVersion androidBuild.libraryMinSdkVersion
@@ -10,8 +15,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     buildTypes {
